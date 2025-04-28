@@ -1,4 +1,4 @@
-﻿namespace Shared.Utilities
+﻿namespace Karin.Shared.Utilities
 {
     public static class CollectionExtensions
     {

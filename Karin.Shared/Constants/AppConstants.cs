@@ -1,4 +1,4 @@
-﻿namespace Shared.Constants
+﻿namespace Karin.Shared.Constants
 {
     public static class AppConstants
     {

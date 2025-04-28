@@ -1,4 +1,4 @@
-﻿namespace Shared.Result
+﻿namespace Karin.Shared.Result
 {
     public class BaseResponse<T>
     {

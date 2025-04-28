@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Globalization;
+﻿using System.Globalization;
+using Newtonsoft.Json;
 
-namespace Shared.Localization
+namespace Karin.Shared.Localization
 {
     public class LocalizationService : ILocalizationService
     {
@@ -19,12 +19,9 @@ namespace Shared.Localization
             culture = string.IsNullOrEmpty(culture) ? "vi-VN" : culture;
             var filePath = Path.Combine(_localizationFilePath, $"messages.{culture}.json");
 
-            if (_localizedValues == null || !File.Exists(filePath))
-            {
-                LoadLocalizationFile(filePath);
-            }
+            if (_localizedValues == null || !File.Exists(filePath)) LoadLocalizationFile(filePath);
 
-            return _localizedValues.TryGetValue(key, out string? value) ? value : key;
+            return _localizedValues.TryGetValue(key, out var value) ? value : key;
         }
 
         private void LoadLocalizationFile(string filePath)

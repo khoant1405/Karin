@@ -1,4 +1,4 @@
-﻿namespace Shared.Localization
+﻿namespace Karin.Shared.Localization
 {
     public interface ILocalizationService
     {

@@ -1,6 +1,6 @@
-namespace Karin.Api
+namespace Karin.Application.DTOs.Sample
 {
-    public class WeatherForecast
+    public class ResGetSampleDto
     {
         public DateOnly Date { get; set; }
 

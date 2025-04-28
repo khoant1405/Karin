@@ -1,4 +1,6 @@
-﻿namespace Shared.Utilities
+﻿using System.Globalization;
+
+namespace Karin.Shared.Utilities
 {
     public static class StringExtensions
     {
@@ -24,7 +26,7 @@
         {
             if (string.IsNullOrWhiteSpace(value)) return value;
 
-            var cultureInfo = System.Globalization.CultureInfo.CurrentCulture;
+            var cultureInfo = CultureInfo.CurrentCulture;
             return cultureInfo.TextInfo.ToTitleCase(value.ToLower());
         }
     }
