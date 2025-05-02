@@ -1,15 +1,23 @@
-namespace Karin.Api.Extensions
+﻿namespace Karin.Api.Extensions
 {
     public static class ConfigureExtension
     {
         public static WebApplication ConfigureExtensions(this WebApplication app)
         {
-            if (app.Environment.IsDevelopment()) app.UseGenSwagger();
+            app.UseRequestLocalization();
 
             app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseGenSwagger();
+            }
+
             app.UseAuthorization();
+
             app.MapControllers();
-            app.UseRequestLocalization();
 
             return app;
         }
