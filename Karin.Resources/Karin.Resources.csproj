@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="Resources\SharedResource.en.resx">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Include="Resources\SharedResource.vi.resx">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Include="Resources\SharedResource.en.resx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Include="Resources\SharedResource.vi.resx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>
