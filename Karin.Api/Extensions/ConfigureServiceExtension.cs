@@ -1,8 +1,8 @@
-﻿using Karin.Application.Interfaces;
+﻿using System.Globalization;
+using Karin.Application.Interfaces;
 using Karin.Application.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.OpenApi.Models;
-using System.Globalization;
 
 namespace Karin.Api.Extensions
 {
