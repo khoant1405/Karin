@@ -1,6 +1,6 @@
-namespace Karin.Application.DTOs.Sample
+namespace Karin.Application.DTOs.Comic
 {
-    public class ResGetSampleDto
+    public class ResCreateComicDto
     {
         public DateOnly Date { get; set; }
 

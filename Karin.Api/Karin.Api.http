@@ -1,6 +1,6 @@
 @Karin.Api_HostAddress = http://localhost:5084
 
-GET {{Karin.Api_HostAddress}}/Sample/
+GET {{Karin.Api_HostAddress}}/Comic/
 Accept: application/json
 
 ###

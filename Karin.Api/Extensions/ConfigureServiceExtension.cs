@@ -1,8 +1,13 @@
 ﻿using System.Globalization;
 using Karin.Application.Interfaces;
 using Karin.Application.Services;
+using Karin.Domain;
+using Karin.Domain.Entities;
+using Karin.Infrastructure;
+using Karin.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 
 namespace Karin.Api.Extensions
 {
@@ -17,6 +22,8 @@ namespace Karin.Api.Extensions
             services.AddGenSwagger();
 
             services.AddConfigLocalization();
+
+            services.AddInfrastructure(services.BuildServiceProvider().GetRequiredService<IConfiguration>());
 
             return services;
         }
@@ -36,7 +43,7 @@ namespace Karin.Api.Extensions
 
         private static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<ISampleService, SampleService>();
+            services.AddScoped<IComicService, ComicService>();
         }
 
         private static void AddConfigLocalization(this IServiceCollection services)
@@ -50,6 +57,16 @@ namespace Karin.Api.Extensions
                 opts.SupportedCultures = supportedCultures;
                 opts.SupportedUICultures = supportedCultures;
             });
+        }
+
+        private static void AddInfrastructure(this IServiceCollection services, IConfiguration config)
+        {
+            var settings = config.GetSection("MongoDbSettings").Get<MongoDbSettings>()!;
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+
+            services.AddSingleton(database);
+            services.AddScoped<IRepository<Comic>, ComicRepository>();
         }
     }
 }
