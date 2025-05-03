@@ -2,6 +2,6 @@ namespace Karin.Application.DTOs.Comic
 {
     public class ReqCreateComicDto
     {
-        public string Id { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,24 +1,43 @@
 ﻿using Karin.Application.DTOs.Comic;
 using Karin.Application.Interfaces;
+using Karin.Domain;
+using Karin.Domain.Entities;
 
 namespace Karin.Application.Services
 {
     public class ComicService : IComicService
     {
-        private static readonly string[] Summaries =
-        [
-            "Freezing", "Bracing"
-        ];
+        private readonly IRepository<Comic> _repository;
 
-        public ICollection<ResGetComicDto> GetData()
+        public ComicService(IRepository<Comic> repository)
         {
-            var result = Enumerable.Range(1, 2).Select(index => new ResGetComicDto
+            _repository = repository;
+        }
+
+        public async Task<IEnumerable<ResGetComicDto>> GetDataAsync()
+        {
+            var result = (await _repository.GetAllAsync()).Select(x => new ResGetComicDto
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            }).ToList();
+                Id = x.Id,
+                Name = x.Name
+            });
             return result;
+        }
+
+        public async Task<ResGetComicDto> CreateComic(ReqCreateComicDto model)
+        {
+            var comic = new Comic
+            {
+                Name = model.Name
+            };
+
+            await _repository.AddAsync(comic);
+
+            return new ResGetComicDto
+            {
+                Id = comic.Id,
+                Name = comic.Name
+            };
         }
     }
 }

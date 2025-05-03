@@ -4,6 +4,8 @@ namespace Karin.Application.Interfaces
 {
     public interface IComicService
     {
-        ICollection<ResGetComicDto> GetData();
+        Task<IEnumerable<ResGetComicDto>> GetDataAsync();
+
+        Task<ResGetComicDto> CreateComic(ReqCreateComicDto model);
     }
 }

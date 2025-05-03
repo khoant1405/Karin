@@ -4,9 +4,9 @@
     {
         public bool Success { get; set; }
         public string Message { get; set; }
-        public T Data { get; set; }
+        public T? Data { get; set; }
 
-        public static BaseResponse<T> CreateSuccess(T data, string message = null)
+        public static BaseResponse<T> CreateSuccess(T? data, string message = null)
         {
             return new BaseResponse<T> { Success = true, Data = data, Message = message };
         }

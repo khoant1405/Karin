@@ -23,16 +23,18 @@ namespace Karin.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetComic()
+        public async Task<IActionResult> GetComicAsync()
         {
-            var result = BaseResponse<ICollection<ResGetComicDto>>.CreateSuccess(_comicService.GetData(), _localizer["SuccessMessage"]);
+            var data = await _comicService.GetDataAsync();
+            var result = BaseResponse<IEnumerable<ResGetComicDto>>.CreateSuccess(data, _localizer["SuccessMessage"]);
             return Ok(result);
         }
 
         [HttpPost]
-        public IActionResult CreateComic(ReqCreateComicDto model)
+        public async Task<IActionResult> CreateComicAsync(ReqCreateComicDto request)
         {
-            var result = BaseResponse<ICollection<ResGetComicDto>>.CreateSuccess(_comicService.GetData(), _localizer["SuccessMessage"]);
+            var comic = await _comicService.CreateComic(request);
+            var result = BaseResponse<ResGetComicDto>.CreateSuccess(comic, _localizer["SuccessMessage"]);
             return Ok(result);
         }
     }
