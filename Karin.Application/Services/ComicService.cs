@@ -19,7 +19,7 @@ namespace Karin.Application.Services
             var result = (await _repository.GetAllAsync()).Select(x => new ResGetComicDto
             {
                 Id = x.Id,
-                Name = x.Name
+                Title = x.Title
             });
             return result;
         }
@@ -28,7 +28,7 @@ namespace Karin.Application.Services
         {
             var comic = new Comic
             {
-                Name = model.Name
+                Title = model.Title
             };
 
             await _repository.AddAsync(comic);
@@ -36,7 +36,7 @@ namespace Karin.Application.Services
             return new ResGetComicDto
             {
                 Id = comic.Id,
-                Name = comic.Name
+                Title = comic.Title
             };
         }
     }
